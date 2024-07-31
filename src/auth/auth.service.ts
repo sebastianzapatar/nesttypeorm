@@ -6,10 +6,13 @@ import { User } from './entities/auth.entity';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { LoginAuthDto } from './dto/login-dto';
+import { JwtService } from '@nestjs/jwt';
 @Injectable()
 export class AuthService {
   constructor(@InjectRepository(User)
-  private readonly userRepository:Repository<User>) {}
+  private readonly userRepository:Repository<User>,
+  private readonly jwtService: JwtService
+  ) {}
   async create(createAuthDto: CreateAuthDto) {
     try{
       const user = this.userRepository.create(createAuthDto);
@@ -51,7 +54,9 @@ export class AuthService {
         throw new UnauthorizedException('Invalid credentials');
       }
       const {fullName} = user;
-      return {user: {fullName, email}};
+      const jwt = this.jwtService.sign({fullName, email});
+      
+      return {user: {fullName, email,jwt}};
     }
     catch(err){
       console.log(err);
