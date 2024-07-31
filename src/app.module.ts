@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { PetsModule } from './pets/pets.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
@@ -16,7 +17,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       autoLoadEntities: true,
       synchronize: true,
     })
-    ,PetsModule],
+    ,PetsModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
