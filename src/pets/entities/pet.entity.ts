@@ -1,5 +1,5 @@
-import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
-
+import { BeforeInsert, Column, Entity, ManyToOne, PrimaryGeneratedColumn} from 'typeorm';
+import { User } from 'src/auth/entities/auth.entity';
 @Entity()
 export class Pet {
     @PrimaryGeneratedColumn('uuid')
@@ -17,5 +17,7 @@ export class Pet {
     capitalizeName(){
         this.name = this.name.toUpperCase();
     }
+    @ManyToOne(()=>User, user=>user.pets)
+    user: User;
     
 }

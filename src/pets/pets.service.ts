@@ -4,15 +4,16 @@ import { UpdatePetDto } from './dto/update-pet.dto';
 import { Pet } from './entities/pet.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
+import { User } from 'src/auth/entities/auth.entity';
 @Injectable()
 export class PetsService {
 
   constructor(@InjectRepository(Pet) 
   private readonly petRepository: Repository<Pet>)
   { }
-  async create(createPetDto: CreatePetDto) {
+  async create(createPetDto: CreatePetDto,user:User) {
     const pet = this.petRepository.create(createPetDto);
-    await this.petRepository.save(pet);
+    await this.petRepository.save({...pet,user});
     return pet;
   }
 

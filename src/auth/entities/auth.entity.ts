@@ -1,6 +1,6 @@
 import { MinLength } from "class-validator";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Pet } from "src/pets/entities/pet.entity";
 @Entity('users')
 export class User {
     @PrimaryGeneratedColumn('uuid')
@@ -20,5 +20,7 @@ export class User {
     })
     @MinLength(1)
     roles:string[];
+    @OneToMany(()=>Pet, pet=>pet.user)
+    pets:Pet[];
 
 }
