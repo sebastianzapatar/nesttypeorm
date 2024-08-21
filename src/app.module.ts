@@ -5,6 +5,10 @@ import { PetsModule } from './pets/pets.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
+import { StudenModule } from './studen/studen.module';
+import { CoursesModule } from './courses/courses.module';
+import { CarsModule } from './cars/cars.module';
+import { OwnersModule } from './owners/owners.module';
 @Module({
   imports: [ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
@@ -17,7 +21,7 @@ import { AuthModule } from './auth/auth.module';
       autoLoadEntities: true,
       synchronize: true,
     })
-    ,PetsModule, AuthModule],
+    ,PetsModule, AuthModule, StudenModule, CoursesModule, CarsModule, OwnersModule],
   controllers: [AppController],
   providers: [AppService],
 })
