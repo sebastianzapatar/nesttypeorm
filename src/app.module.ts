@@ -9,6 +9,10 @@ import { StudenModule } from './studen/studen.module';
 import { CoursesModule } from './courses/courses.module';
 import { CarsModule } from './cars/cars.module';
 import { OwnersModule } from './owners/owners.module';
+import { EstudiantesModule } from './estudiantes/estudiantes.module';
+import { CursosModule } from './cursos/cursos.module';
+import { ClientesModule } from './clientes/clientes.module';
+import { ComprasModule } from './compras/compras.module';
 @Module({
   imports: [ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
@@ -21,7 +25,7 @@ import { OwnersModule } from './owners/owners.module';
       autoLoadEntities: true,
       synchronize: true,
     })
-    ,PetsModule, AuthModule, StudenModule, CoursesModule, CarsModule, OwnersModule],
+    ,PetsModule, AuthModule, StudenModule, CoursesModule, CarsModule, OwnersModule, EstudiantesModule, CursosModule, ClientesModule, ComprasModule],
   controllers: [AppController],
   providers: [AppService],
 })
