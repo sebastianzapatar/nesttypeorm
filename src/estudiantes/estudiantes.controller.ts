@@ -31,4 +31,8 @@ export class EstudiantesController {
   remove(@Param('id') id: string) {
     return this.estudiantesService.remove(+id);
   }
+  @Post(':estudianteId/enroll/:cursoId')
+  enroll(@Param('estudianteId') estudianteId: string, @Param('cursoId') cursoId: string) {
+    return this.estudiantesService.enroll(estudianteId, cursoId);
+  }
 }
