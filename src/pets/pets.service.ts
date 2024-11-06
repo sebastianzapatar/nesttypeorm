@@ -11,9 +11,9 @@ export class PetsService {
   constructor(@InjectRepository(Pet) 
   private readonly petRepository: Repository<Pet>)
   { }
-  async create(createPetDto: CreatePetDto,user:User) {
+  async create(createPetDto: CreatePetDto) {
     const pet = this.petRepository.create(createPetDto);
-    await this.petRepository.save({...pet,user});
+    await this.petRepository.save(pet);
     return pet;
   }
 

@@ -12,14 +12,12 @@ export class PetsController {
   constructor(private readonly petsService: PetsService) {}
 
   @Post()
-  @UseGuards(AuthGuard(),UseRoleGuard)
-  create(@Body() createPetDto: CreatePetDto,@getUser() user:User) {
-    return this.petsService.create(createPetDto,
-      user);
+ 
+  create(@Body() createPetDto: CreatePetDto) {
+    return this.petsService.create(createPetDto);
   }
 
   @Get()
-  @UseGuards(AuthGuard())
   findAll() {
     return this.petsService.findAll();
   }
